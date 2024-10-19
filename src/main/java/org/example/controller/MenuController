@@ -1,4 +1,4 @@
-package edu.adaProject.controller;
+package org.example.model;
 
 public class MenuController {
     public void showMenu() {
