@@ -1,6 +1,14 @@
 package org.example.model;
 
+import edu.adaProject.service.SalaryService;
+
+import java.text.DecimalFormat;
+import java.util.Map;
+
 public class MenuController {
+    DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");
+    SalaryService salaryService = new SalaryService();
+
     public void showMenu() {
         System.out.println(
                 "\nSelecione uma opção no menu abaixo: \n" +
@@ -8,7 +16,8 @@ public class MenuController {
                 "2 - Qual a média salarial dos profissionais de dados?\n" +
                 "3 - Qual o maior salário registrado?\n" +
                 "4 - Qual a média salarial dos profissionais juniores?\n" +
-                "5 - Qual categoria tem a maior diferença salarial entre trabalho presencial e remoto?\n" +
+                "5 - Qual diferença salarial entre trabalho presencial e " +
+                        "remoto entre os cargos?\n" +
                 "6 - Qual cargo apresenta a maior média salarial?\n" +
                 "7 - Em qual localização estão concentrados os maiores salários?\n" +
                 "8 - Quantos profissionais reportaram salários na empresa com a maior média salarial?\n" +
@@ -19,9 +28,6 @@ public class MenuController {
                 "0 - Sair");
     }
 
-    public void backToMenu() {
-        System.out.println("Pressione enter para voltar ao menu");
-    }
     public void showDataDescription() {
         System.out.printf("O conjunto de dados de 2024 sobre salários e " +
                 "atributos de emprego dos desenvolvedores de dados  oferece " +
@@ -58,5 +64,46 @@ public class MenuController {
                 + " - *Localização da empresa* (company_location): " +
                 "Localização geográfica da empresa\n");
     }
-}
 
+    public void calcularMediaSalarial() {
+        double mediaSalarial = salaryService.calcularMediaSalarial();
+        String mediaFormatada = decimalFormat.format(mediaSalarial);
+        System.out.println("A média salarial anual dos " +
+                "profissionais de é de: US$ " + mediaFormatada);
+    }
+
+    public void calcularMaiorSalario() {
+        double maiorSalario = salaryService.calcularMaiorSalario();
+        String valorFormatado = decimalFormat.format(maiorSalario);
+        System.out.println("O maior salário anual registrado é de: US$ " + valorFormatado);
+    }
+
+    public void calcularMediaSalarialJuniores() {
+        double mediaSalarialJuniores = salaryService.calcularMediaSalarialJuniores();
+        String mediaFormatada = decimalFormat.format(mediaSalarialJuniores);
+        System.out.println("A média salarial anual dos profissionais juniores é de: US$ " + mediaFormatada);
+    }
+
+    public void calcularDiferencaSalarialRemotoEPresencial() {
+        Map<String,Double> salariosRemotos =
+                salaryService.cargoMaximoSalarialRemoto();
+        Map<String,Double> salariosPresenciais =
+                salaryService.cargoMaximoSalarialPresencial();
+
+        System.out.printf("%-40s %-20s %-20s %-20s%n", "Cargo", "Salário " +
+                "Remoto (US$)", "Salário Presencial (US$)", "Diferença (%)");
+        salariosRemotos.forEach((cargo, salarioRemoto) -> {
+            double salarioPresencial = salariosPresenciais.getOrDefault(cargo
+                    , 0.0);
+            if (salarioPresencial == 0.0 || salarioRemoto == 0.0) return;
+            double diferenca = (salarioRemoto / salarioPresencial - 1) * 100;
+            System.out.printf("%-40s %-20.2f %-20.2f %-20.2f%n", cargo,
+                    salarioRemoto, salarioPresencial, diferenca);
+        });
+    }
+
+    public void calcularMaiorMediaSalarial() {
+        String maiorMediaSalarial = salaryService.cargoMaximoSalarial();
+        System.out.println("O cargo que apresenta a maior média salarial é: " + maiorMediaSalarial);
+    }
+}
