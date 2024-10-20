@@ -33,9 +33,24 @@ public class Main {
                 case "1":
                     controller.showDataDescription();
                     break;
+                case "2":
+                    controller.calcularMediaSalarial();
+                    break;
+                case "3":
+                    controller.calcularMaiorSalario();
+                    break;
+                case "4":
+                    controller.calcularMediaSalarialJuniores();
+                    break;
+                case "5":
+                    controller.calcularDiferencaSalarialRemotoEPresencial();
+                    break;
+                case "6":
+                    controller.calcularMaiorMediaSalarial();
+                    break;
                 default:
                     System.out.println("Opção inválida");
-                    controller.showMenu();
+                    break;
             }
         }
     }
