@@ -1,24 +1,60 @@
 package org.example;
 
+import org.example.controller.MenuController;
 import org.example.model.DevSalary;
 import org.example.service.CsvReaderService;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
-import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.List;
+import java.util.Scanner;
+
 
 public class Main {
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        MenuController controller = new MenuController();
+
         List<DevSalary> devSalaries = CsvReaderService.getDatabase();
 
-//        devSalaries.stream()
-//                .limit(300)
-//                .forEach(System.out::println);
+        devSalaries.stream()
+                .limit(300)
+                .forEach(System.out::println);
+
+        String opt = "";
+        while (!opt.equals("0")) {
+            controller.showMenu();
+            opt = scanner.nextLine();
+            if (opt.equalsIgnoreCase("0")) {
+                System.out.println("Finalizando a aplicação");
+                scanner.close();
+                System.exit(0);
+            }
+
+            switch (opt) {
+                case "1":
+                    controller.showDataDescription();
+                    break;
+                case "2":
+                    controller.calcularMediaSalarial();
+                    break;
+                case "3":
+                    controller.calcularMaiorSalario();
+                    break;
+                case "4":
+                    controller.calcularMediaSalarialJuniores();
+                    break;
+                case "5":
+                    controller.calcularDiferencaSalarialRemotoEPresencial();
+                    break;
+                case "6":
+                    controller.calcularMaiorMediaSalarial();
+                    break;
+                default:
+                    System.out.println("Opção inválida");
+                    break;
+            }
+        }
+
 
         System.out.println("_".repeat(70));
         // Iago Teles //
@@ -50,7 +86,6 @@ public class Main {
         cargoMenosFrequente.ifPresent(entry ->
                 System.out.println("Cargo que menos aparece: " + entry.getKey() + " com " + entry.getValue() + " ocorrências."));
         System.out.println("_".repeat(70));
-
 
     }
 }

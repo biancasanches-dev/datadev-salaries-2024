@@ -1,0 +1,69 @@
+package edu.adaProject.service;
+
+import edu.adaProject.model.DevSalary;
+
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+public class SalaryService {
+    List<DevSalary> devSalaries = CsvReaderService.getDatabase();
+
+    public double calcularMediaSalarial() {
+        return devSalaries.stream()
+                .mapToDouble(DevSalary::salary_in_usd)
+                .average()
+                .orElse(0.0);
+    }
+
+    public double calcularMaiorSalario() {
+        return devSalaries.stream()
+                .mapToDouble(DevSalary::salary_in_usd)
+                .max()
+                .orElse(0.0);
+    }
+
+    public double calcularMediaSalarialJuniores() {
+        return devSalaries.stream()
+                .filter(devSalary -> devSalary.experience_level().equalsIgnoreCase("EN"))
+                .mapToDouble(DevSalary::salary_in_usd)
+                .average()
+                .orElse(0.0);
+    }
+
+    public Map<String, Double> cargoMaximoSalarialRemoto() {
+        return devSalaries.stream()
+                .filter(p -> p.getRemoteRatio() == 100) // Trabalhos remotos
+                .collect(Collectors.groupingBy(
+                        DevSalary::getJobTitle,
+                        Collectors.mapping(DevSalary::getSalaryInUsd,
+                                Collectors.maxBy(Double::compare))
+                ))
+                .entrySet().stream()
+                .collect(Collectors.toMap(Map.Entry::getKey, e -> e.getValue().orElse(0.0)));
+    }
+
+    public Map<String, Double> cargoMaximoSalarialPresencial() {
+        return devSalaries.stream()
+                .filter(p -> p.getRemoteRatio() == 0) // Trabalhos presenciais
+                .collect(Collectors.groupingBy(
+                        DevSalary::getJobTitle,
+                        Collectors.mapping(DevSalary::getSalaryInUsd,
+                                Collectors.maxBy(Double::compare))
+                ))
+                .entrySet().stream()
+                .collect(Collectors.toMap(Map.Entry::getKey, e -> e.getValue().orElse(0.0)));
+    }
+
+    public String cargoMaximoSalarial() {
+        return devSalaries.stream()
+                .collect(Collectors.groupingBy(
+                        DevSalary::getJobTitle,
+                        Collectors.averagingDouble(DevSalary::getSalaryInUsd)
+                ))
+                .entrySet().stream()
+                .max(Map.Entry.comparingByValue())
+                .map(entry -> entry.getKey() + " | Média Salarial: US$ " + String.format("%.2f", entry.getValue()))
+                .orElse("Nenhuma categoria encontrada.");
+    }
+}
