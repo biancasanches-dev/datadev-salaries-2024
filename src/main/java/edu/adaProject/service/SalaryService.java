@@ -2,6 +2,7 @@ package edu.adaProject.service;
 
 import edu.adaProject.model.DevSalary;
 
+import java.text.DecimalFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -75,4 +76,25 @@ public class SalaryService {
         });
         return result;
     }
+
+    //Nathália
+    public String localizacaoComMaiorNumeroDeSalarios() {
+        Map<String, Long> salariosPorLocalizacao = devSalaries.stream()
+                .collect(Collectors.groupingBy(
+                        DevSalary::company_location,
+                        Collectors.counting()
+                ));
+
+        Map.Entry<String, Long> localizacaoComMaiorSalarios = salariosPorLocalizacao.entrySet().stream()
+                .max(Map.Entry.comparingByValue())
+                .orElse(null);
+
+        if (localizacaoComMaiorSalarios == null) {
+            return "Nenhuma localização encontrada.";
+        }
+
+        return "Localização com o maior número de salários reportados: " +
+                localizacaoComMaiorSalarios.getKey() + " | Número de salários: " + localizacaoComMaiorSalarios.getValue();
+    }
+
 }

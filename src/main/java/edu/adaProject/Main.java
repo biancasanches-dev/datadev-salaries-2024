@@ -37,6 +37,8 @@ public class Main {
                 case "5":
                     controller.calcularLocalComMaiorEMenorSalarioRemoto();
                     break;
+                case "6":
+                    controller.localizacaoComMaiorNumeroDeSalarios();
                 default:
                     System.out.println("Opção inválida");
                     break;
