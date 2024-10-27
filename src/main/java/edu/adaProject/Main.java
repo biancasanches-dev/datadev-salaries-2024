@@ -40,6 +40,8 @@ public class Main {
                 case "6":
                     controller.mostrarLocalizacaoComMaioresSalarios();
                     break;
+                case "6":
+                    controller.localizacaoComMaiorNumeroDeSalarios();
                 default:
                     System.out.println("Opção inválida");
                     break;
