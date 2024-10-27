@@ -2,6 +2,7 @@ package edu.adaProject.service;
 
 import edu.adaProject.model.DevSalary;
 
+import java.text.NumberFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -74,5 +75,28 @@ public class SalaryService {
             result.put("Pior localização (Remoto): " + nomePais, entry.getValue());
         });
         return result;
+    }
+
+    // Luana Méro //
+    public void mostrarLocalizacaoComMaioresSalarios() {
+
+        Map<String, Double> salarioMedioPorLocalizacao = devSalaries.stream()
+                .collect(Collectors.groupingBy(
+                        DevSalary::company_location,
+                        Collectors.averagingDouble(DevSalary::salary_in_usd)
+                ));
+
+
+        Optional<Map.Entry<String, Double>> localizacaoComMaiorSalario = salarioMedioPorLocalizacao.entrySet().stream()
+                .max(Map.Entry.comparingByValue());
+
+
+        localizacaoComMaiorSalario.ifPresent(entry -> {
+            String nomePais = paises.getOrDefault(entry.getKey(), "Desconhecido");
+            System.out.println("A localização com maior salário médio é: " +
+                    entry.getKey() + " (" + nomePais + ")" +
+                    " com um salário médio de " +
+                    NumberFormat.getInstance(new Locale("pt", "BR")).format(entry.getValue()) + " Dólares");
+        });
     }
 }

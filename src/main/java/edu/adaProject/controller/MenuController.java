@@ -20,7 +20,7 @@ public class MenuController {
                         "3 - Qual cargo mais aparece no dataset? E o que menos aparece?\n" +
                         "4 - Qual o maior salário registrado?\n" +
                         "5 - Quais localidades tem a maior e menor média de salário remoto?\n" +
-                        "6 - \n" +
+                        "6 - Em qual localização estão concentradas as empresas com maior média salarial\n" +
                         "7 - \n" +
                         "8 - \n" +
                         "0 - Sair");
@@ -83,5 +83,9 @@ public class MenuController {
     public void calcularLocalComMaiorEMenorSalarioRemoto() {
         Map<String, Double> result = salaryService.getLocalMaiorEMenorSalarioRemoto();
         result.forEach((location, salary) -> System.out.println(location + " com salário médio de $" + salary));
+    }
+
+    public void mostrarLocalizacaoComMaioresSalarios(){
+        salaryService.mostrarLocalizacaoComMaioresSalarios();
     }
 }
