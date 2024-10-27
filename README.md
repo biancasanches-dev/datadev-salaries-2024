@@ -91,7 +91,7 @@ classDiagram
 ---
 ## Acesso ao projeto
 
-Para acessar o projeto, siga estas instruções:
+Para acessar e rodar o projeto, siga as etapas abaixo:
 
 1.  Clone este repositório para o seu ambiente local usando o seguinte comando no terminal:
 ```bash    
@@ -101,7 +101,20 @@ O dataset utilizado neste projeto foi obtido do Kaggle e pode ser encontrado
 neste [link](https://www.kaggle.com/datasets/zeesolver/data-eng-salary-2024/data).
 
 2.  Abra o projeto na sua IDE de preferência.
-    <br>
+3.  Importe o projeto selecionando a pasta onde você clonou o repositório.
+4.  Localize o arquivo chamado Main.java.
+     * Certifique-se de que o projeto está configurado com a versão correta do JDK.
+5. Com o arquivo aberto, clique com o botão direito e selecione Run Main.main() ou vá até o menu de execução e selecione "Run".
+
+> Alternativamente, digite o comando de execução no terminal da IDE:
+```bash
+java -cp out/production/seu-projeto Main
+```
+>* Ajuste o caminho, se necessário, para o diretório compilado da sua IDE.
+<br>
+A execução exibe o menu de apresentação no terminal embutido da IDE. 
+<br>
+
 ---
 
 ## Autores
