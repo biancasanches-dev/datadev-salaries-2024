@@ -1,6 +1,4 @@
-package org.example.model;
-
-import edu.adaProject.service.SalaryService;
+package edu.adaProject.controller;
 
 import java.text.DecimalFormat;
 import java.util.Map;

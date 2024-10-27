@@ -1,4 +1,4 @@
-package org.example.model;
+package edu.adaProject.model;
 
 public record DevSalary (
         int year,
