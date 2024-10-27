@@ -42,6 +42,7 @@ public class Main {
                     break;
                 case "7":
                     controller.localizacaoComMaiorNumeroDeSalarios();
+                    break;
                 default:
                     System.out.println("Opção inválida");
                     break;
