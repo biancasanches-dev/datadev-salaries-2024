@@ -28,7 +28,7 @@ O objetivo principal é analisar dados salariais e padrões de emprego de desenv
 - [Estrutura dos Dados](#estrutura-dos-dados)
 - [Entregáveis](#entregáveis)
 - [Funcionalidades a Implementar](#funcionalidades-a-implementar)
-- [Acesso ao Projeto](#acesso-ao-projeto) ❗Atualizar link
+- [Acesso ao Projeto](#acesso-ao-projeto)
 - [Autores](#autores)
 
 ---
@@ -95,7 +95,7 @@ Para acessar o projeto, siga estas instruções:
 
 1.  Clone este repositório para o seu ambiente local usando o seguinte comando no terminal:
 ```bash    
-    `git clone git@github.com:biancasanches-dev/❗nome-do-repositorio.git` 
+    `git clone git@github.com:biancasanches-dev/datadev-salaries-2024` 
 ```
 O dataset utilizado neste projeto foi obtido do Kaggle e pode ser encontrado 
 neste [link](https://www.kaggle.com/datasets/zeesolver/data-eng-salary-2024/data).
