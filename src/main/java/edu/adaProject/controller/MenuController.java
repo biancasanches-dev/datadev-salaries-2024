@@ -20,7 +20,7 @@ public class MenuController {
                         "3 - Qual cargo mais aparece no dataset? E o que menos aparece?\n" +
                         "4 - Qual o maior salário registrado?\n" +
                         "5 - Quais localidades tem a maior e menor média de salário remoto?\n" +
-                        "6 - Em qual localização estão concentradas as empresas com maior média salarial\n" +
+                        "6 - Em qual localização estão concentradas as empresas com maior média salarial?\n" +
                         "7 - Qual localização possui o maior número de salários reportados?\n" +
                         "8 - \n" +
                         "0 - Sair");
