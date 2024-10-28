@@ -43,12 +43,13 @@ public class Main {
                 case "7":
                     controller.localizacaoComMaiorNumeroDeSalarios();
                     break;
+                case "8":
+                    controller.cargosComMaioresSalarios();
+                    break;
                 default:
                     System.out.println("Opção inválida");
                     break;
             }
         }
-
     }
-
 }
