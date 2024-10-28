@@ -121,4 +121,62 @@ public class SalaryService {
                 localizacaoComMaiorSalarios.getKey() + " | Número de salários: " + localizacaoComMaiorSalarios.getValue();
     }
 
+    /**
+     * Catharia De Zagiacomo
+     * @return String construída com a lista ordenada dos cargos com maiores salarios.
+     */
+    public String cargosComMaioresSalarios() {
+        /**
+         * Configuração de formatador numérico
+         * Sem valores decimais e no formato brasileiro
+         */
+        NumberFormat nf = NumberFormat.getInstance(new Locale("pt", "BR"));
+        nf.setMaximumFractionDigits(0);
+        /**
+         * Nova String para construção do retorno da função
+         */
+        StringBuilder top5Cargos = new StringBuilder();
+        /**
+         * Contador para os top 5 salários
+         * TODO: Adicionar argumento na função para que o usuário selecione quantos salários retornar
+         */
+        int contador = 0;
+        /**
+         * Base de dados com informações de Posição e Salário
+         */
+        Map<String, Double> avgSalaryByPositions = devSalaries.stream()
+                .collect(Collectors.groupingBy(
+                    DevSalary::job_title,
+                    Collectors.averagingInt(DevSalary::salary_in_usd)
+                ));
+
+        /**
+         * Cria um novo "entrySet" com a ordenação de salário e retona através do "collect"
+         */
+        Map<String, Double> sortedAvgSalaryByPositions = avgSalaryByPositions.entrySet().stream()
+                .sorted(Map.Entry.<String, Double>comparingByValue().reversed())
+                .collect(Collectors.toMap(
+                        Map.Entry::getKey,
+                        Map.Entry::getValue,
+                        (e1, e2) -> e1,
+                        LinkedHashMap::new
+                ));
+
+        /**
+         * Seleciona e retorna os top 5 salários
+         */
+        for (Map.Entry<String, Double> entry : sortedAvgSalaryByPositions.entrySet()) {
+            if (contador >= 5) break;
+            top5Cargos.append(entry.getKey())
+                    .append(": ")
+                    .append(nf.format(entry.getValue()))
+                    .append(" Dólares")
+                    .append("\n");
+            contador++;
+        }
+
+        String result = top5Cargos.toString();
+
+        return "Os cargos com os maiores salários são: \n" + result;
+    }
 }

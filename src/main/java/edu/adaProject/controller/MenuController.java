@@ -22,7 +22,8 @@ public class MenuController {
                         "5 - Quais localidades tem a maior e menor média de salário remoto?\n" +
                         "6 - Em qual localização estão concentradas as empresas com maior média salarial?\n" +
                         "7 - Qual localização possui o maior número de salários reportados?\n" +
-                        "8 - \n" +
+                        "8 - Quais os cargos dos maiores salários?\n" +
+                        "9 - \n" +
                         "0 - Sair");
     }
 
@@ -93,4 +94,7 @@ public class MenuController {
         System.out.println(salaryService.localizacaoComMaiorNumeroDeSalarios());
     }
 
+    public void cargosComMaioresSalarios(){
+        System.out.println(salaryService.cargosComMaioresSalarios());
+    }
 }
