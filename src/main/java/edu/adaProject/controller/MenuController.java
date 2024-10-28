@@ -13,6 +13,22 @@ public class MenuController {
     SalaryService salaryService = new SalaryService();
 
     public void showMenu() {
+         System.out.println(" _________________________________________________________________");
+        System.out.println("|                                                                 |  ");
+        System.out.println("|           ___                    _____                          |  ");
+        System.out.println("|          /   \\           _   _  |  _  \\                         |  ");
+        System.out.println("|         /  _  \\    ____ | | / / | |  \\ \\   ___   __    __       |  ");
+        System.out.println("|        /  (_)  \\  / ___|| |/ /  | |   | ) / __ \\ \\ \\  / /       |  ");
+        System.out.println("|       /  /   \\  \\ \\___ \\| |\\ \\  | |__/ / |  ___/  \\ \\/ /        |  ");
+        System.out.println("|      /__/     \\__\\|____/|_| \\_\\ |_____/   \\____|   \\__/         |  ");
+        System.out.println("|       ____      _      _           _      ____   _     _        |  ");
+        System.out.println("|      / ___|    / \\    | |         / \\    |  _  \\ \\ \\  / /       |  ");
+        System.out.println("|     | (___    / _ \\   | |        / _ \\   | |_|  | \\ \\/ /        |  ");
+        System.out.println("|      \\___ \\  / ___ \\  | |       / ___ \\  |     /   \\  /         |  ");
+        System.out.println("|       ___) |/ /   \\ \\ | |____  / /   \\ \\ | |\\ \\    | |          |  ");
+        System.out.println("|      |____//_/     \\_\\|______|/_/     \\_\\|_| \\_\\   |_|          |  ");
+        System.out.println("|                                                                 |  ");
+        System.out.println("|_________________________________________________________________|  ");
         System.out.println(
                 "\nSelecione uma opção no menu abaixo: \n" +
                         "1 - Descrição dos dados\n" +
@@ -23,7 +39,6 @@ public class MenuController {
                         "6 - Em qual localização estão concentradas as empresas com maior média salarial?\n" +
                         "7 - Qual localização possui o maior número de salários reportados?\n" +
                         "8 - Quais os cargos dos maiores salários?\n" +
-                        "9 - \n" +
                         "0 - Sair");
     }
 
